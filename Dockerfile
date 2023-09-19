@@ -15,8 +15,9 @@ RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.3.450/qua
     && DEBIAN_FRONTEND=noninteractive apt install ./quarto-1.3.450-linux-amd64.deb \
     && rm quarto-1.3.450-linux-amd64.deb
 
-RUN install.r devtools rmarkdown quarto tidyverse gifski tidybayes brms \
- && installGithub.r rundel/checklist rundel/parsermd sta344-644-fa23/dukestm
+RUN install.r devtools rmarkdown quarto tidyverse gifski tidybayes brms cmdstanr \
+ && installGithub.r rundel/checklist rundel/parsermd sta344-644-fa23/dukestm \
+ && Rscript -e "cmdstanr::install_cmdstan()"
 
 RUN apt-get clean \
  && rm -rf /var/lib/apt/lists/*
